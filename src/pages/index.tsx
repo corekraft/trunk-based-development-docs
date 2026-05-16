@@ -21,7 +21,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className={clsx('container', styles.heroGrid)}>
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>MISSION-CRITICAL ENGINEERING PLAYBOOK</p>
+        <p className={styles.eyebrow}>SOFTWARE ENGINEERING PLAYBOOK</p>
           <Heading as="h1" className="hero__title">
             {siteConfig.title}
           </Heading>

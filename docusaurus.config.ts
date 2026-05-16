@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Mission-Critical Trunk-Based Delivery',
+  title: 'Trunk-Based Development Practice',
   tagline:
     'Operational guidance for engineering teams keeping Salesforce delivery stable, observable, and continuously releasable.',
   favicon: 'img/favicon.ico',
@@ -62,7 +62,7 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Mission-Critical TBD',
+      title: 'Trunk-Based Development',
       logo: {
         alt: 'Trunk-Based Development for Salesforce',
         src: 'img/logo.svg',
