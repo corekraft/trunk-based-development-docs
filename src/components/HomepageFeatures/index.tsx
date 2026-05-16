@@ -1,58 +1,64 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
+  label: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
 };
 
-const FeatureList: FeatureItem[] = [
+const featureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Controlled Integration Cadence',
+    label: '01 / trunk integrity',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Keep changes small, reviewable, and moving into <code>main</code> before
+        branch drift turns into a deployment incident.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Operational Guardrails',
+    label: '02 / validation mesh',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Pair Salesforce delivery with CI checks, feature flags, and rollback
+        paths designed for production-facing systems.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Incident-Ready Release Flow',
+    label: '03 / response discipline',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Roll forward with confidence because release readiness is measured
+        continuously, not guessed at the end of the sprint.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, label, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
+    <article className={clsx('col col--4', styles.featureCol)}>
+      <div className={styles.featureCard}>
+        <p className={styles.featureLabel}>{label}</p>
+        <div className={styles.featureGraphic}>
+          <Svg className={styles.featureSvg} role="img" />
+        </div>
         <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <p className={styles.featureBody}>{description}</p>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -60,9 +66,18 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
+        <div className={styles.sectionHeader}>
+          <p className={styles.sectionEyebrow}>COMMAND SURFACES</p>
+          <Heading as="h2">Software delivery with mission-control discipline</Heading>
+          <p className={styles.sectionBody}>
+            The site now frames trunk-based development as an engineering
+            control system: observability, containment, and rapid corrective
+            action.
+          </p>
+        </div>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {featureList.map(feature => (
+            <Feature key={feature.title} {...feature} />
           ))}
         </div>
       </div>

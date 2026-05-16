@@ -1,0 +1,58 @@
+---
+sidebar_position: 3
+---
+
+# Team Workflow
+
+## Daily flow
+
+A practical Salesforce trunk-based workflow looks like this:
+
+1. Pull latest `main`.
+2. Create a short-lived branch only if review workflow requires it.
+3. Develop in a scratch org.
+4. Keep the change small enough to merge within one to two days.
+5. Validate locally using the same commands CI will run.
+6. Open a pull request.
+7. Pass automated checks.
+8. Merge to `main`.
+9. Delete the branch.
+
+## Work sizing rules
+
+The workflow only works if the team sizes work correctly:
+
+- Split large stories into mergeable increments.
+- Separate refactors from behavior changes when practical.
+- Avoid combining multiple metadata domains in one pull request unless they are tightly coupled.
+- If a change will take longer, use feature flags or branch by abstraction instead of extending branch lifetime.
+
+## Salesforce examples
+
+### Good candidate for one short-lived branch
+
+- Add an Apex service method.
+- Add tests.
+- Add a permission-controlled UI entry point.
+- Keep the feature disabled by default.
+
+### Bad candidate
+
+- A multi-week branch containing object model changes, flows, Apex refactors, profile edits, and deployment fixes waiting for one release event.
+
+That second example creates exactly the integration risk the source material warns about.
+
+## Pull request expectations
+
+Pull requests should be:
+
+- Small enough to review quickly.
+- Linked to one narrow outcome.
+- Backed by automated validation.
+- Safe to merge without waiting for a massive release window.
+
+## Release behavior
+
+Near a release, most developers should continue normal work on `main`. If a release branch exists, only a small subset of the team should focus on release candidate handling and cherry-picks. The rest of the team should not be dragged into a code freeze.
+
+That is a direct adaptation of the source guidance around release handling.

@@ -1,0 +1,58 @@
+---
+sidebar_position: 3
+---
+
+# Core Principles
+
+## Keep `main` always integrateable
+
+`main` is the place where the whole team meets. Every change merged there should compile, validate, and be a legitimate step toward production readiness.
+
+For Salesforce, that means:
+
+- Metadata in source format is the system of record.
+- Validation and tests run on every pull request.
+- The post-merge build on `main` is treated as authoritative.
+
+## Optimize for merge frequency, not branch comfort
+
+The source material repeatedly favors many small integrations over large delayed ones. That is the practical defense against merge hell.
+
+For Salesforce teams:
+
+- Prefer one small metadata or Apex change set per pull request.
+- Break stories into slices that can merge independently.
+- Avoid bundling unrelated object, flow, permission, and code changes together.
+
+## One branch, one owner, short lifetime
+
+If a team uses feature branches, they should be:
+
+- Short-lived.
+- Owned by one developer or one pair.
+- Deleted immediately after merge.
+
+That rule matters even more in Salesforce, where metadata conflicts can become painful quickly.
+
+## Protect releases with toggles and architecture
+
+When product wants incomplete work hidden, the answer is not a month-long branch. The answer is to merge incrementally while keeping behavior off until the business is ready.
+
+Salesforce-friendly controls include:
+
+- Custom permissions for user-visible capability.
+- Permission sets for controlled rollout.
+- Custom metadata or hierarchy custom settings for runtime behavior.
+- Abstraction layers around integrations or service implementations.
+
+## Fix bugs on trunk first
+
+If a production release branch exists, the preferred practice from the source material is still to reproduce and fix the bug on trunk first, then cherry-pick to the release branch if needed. That avoids creating fixes that drift away from ongoing development.
+
+## Avoid orgs as branching substitutes
+
+This is the main Salesforce-specific adaptation. Sandboxes and scratch orgs are useful environments, but they should not become hidden branch models:
+
+- Do not let a sandbox act as a weeks-long integration stream.
+- Do not let different sandboxes carry different truths for the same feature.
+- Use orgs to validate source-controlled changes, not to replace disciplined integration.

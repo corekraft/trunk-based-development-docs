@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+# Why Salesforce Needs Trunk-Based Development
+
+Salesforce teams often inherit exactly the conditions trunk-based development is meant to correct:
+
+- Long-lived branches tied to epics or releases.
+- Sandboxes acting like parallel code lines.
+- Late integration of metadata, Apex, flows, profiles, and permissions.
+- Painful pre-release merge windows.
+- Hotfixes that diverge from ongoing work.
+
+## Why the model fits Salesforce
+
+Salesforce development has a high cost of late integration:
+
+- Metadata merges are brittle.
+- Declarative and programmatic changes often land together.
+- Profiles, permissions, flows, and object metadata create broad blast radius.
+- Environment drift hides problems until late.
+
+A trunk-based model reduces that risk by forcing earlier integration and standardizing validation.
+
+## What changes in practice
+
+Instead of saying "this feature stays on a branch until UAT is done", the team shifts to:
+
+- Small pull requests.
+- Frequent merges to `main`.
+- CI-backed validation to a clean org.
+- Runtime controls for incomplete work.
+- Late release branching only if the release process truly requires it.
+
+## Salesforce interpretation of the source material
+
+The source material is generic software-engineering guidance. Applying it to Salesforce leads to these practical interpretations:
+
+- Scratch orgs are better aligned than long-lived sandboxes because they are disposable.
+- Salesforce DX source format makes `main` the real integration point.
+- Permission-driven rollout is often the simplest feature-flag equivalent.
+- Branch by abstraction is useful for Apex services, selectors, platform events, and external integrations.
+
+## When teams struggle
+
+Most failure cases are not tooling failures. They are policy failures:
+
+- Branches stay open too long.
+- Stories are too large to merge safely.
+- CI is slow or incomplete.
+- Teams rely on sandbox state that is not reproducible from source.
+- Release management is allowed to interrupt daily integration.
+
+Those are operating-model problems first, not Git problems.

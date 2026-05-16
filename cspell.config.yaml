@@ -1,0 +1,33 @@
+version: '0.2'
+language: en
+
+enabled: true
+allowCompoundWords: true
+useGitignore: true
+
+ignorePaths:
+  - build/**
+  - node_modules/**
+  - .docusaurus/**
+  - package-lock.json
+  - static/img/**
+
+files:
+  - '**/*.{md,mdx,ts,tsx,js,jsx,json,yaml,yml,css}'
+
+words:
+  - Corekraft
+  - Docusaurus
+  - DX
+  - GitHub
+  - mdx
+  - orgs
+  - Salesforce
+  - sfdx
+  - trunkbaseddevelopment
+
+ignoreWords: []
+
+dictionaries:
+  - softwareTerms
+  - companies

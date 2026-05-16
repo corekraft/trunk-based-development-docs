@@ -1,0 +1,126 @@
+---
+sidebar_position: 2
+---
+
+# Starting Steps
+
+This is the practical rollout sequence for a Salesforce team adopting trunk-based development.
+
+## 1. Declare `main` as the only integration branch
+
+Set the rule first:
+
+- `main` is the shared line of development.
+- No long-lived feature branches.
+- No release train branches used for ongoing development.
+- If a short-lived branch is needed for review, it should merge within one to two days.
+
+This is directly aligned with the source material's emphasis on one shared trunk and short-lived branches.
+
+## 2. Make source control the system of record
+
+Before process changes can hold, the team needs one trusted representation of the app:
+
+- Use Salesforce DX source format.
+- Commit all metadata that materially affects behavior.
+- Minimize manual org-only configuration.
+- Document how scratch orgs and sandboxes are created from source.
+
+If the repo is not the source of truth, trunk-based development will collapse under environment drift.
+
+## 3. Standardize short-lived branch policy
+
+If the team uses pull requests, define the contract clearly:
+
+- One branch per small change.
+- One owner, or one pair.
+- Branch lifetime measured in hours or a couple of days, not weeks.
+- Delete the branch immediately after merge.
+
+This is the main behavior change most teams need.
+
+## 4. Put automated validation on every pull request
+
+At minimum, each pull request should run:
+
+- Source format checks.
+- Linting and static analysis.
+- Targeted Apex tests or the agreed validation suite.
+- Deployment validation to a clean org where appropriate.
+
+The underlying principle comes from the trunk-based development CI guidance: developers and CI should run the same build logic, and every incoming change should be verified.
+
+## 5. Add a post-merge `main` pipeline
+
+Do not stop at pull-request checks. Also validate the actual shared trunk:
+
+- Re-run the authoritative pipeline on `main`.
+- Publish failures immediately.
+- Treat a broken trunk as urgent work.
+
+Without this, the team only verifies candidate merges, not the branch everyone depends on.
+
+## 6. Introduce feature rollout controls
+
+To avoid long-lived branches for unfinished work, add release-safe toggles:
+
+- Custom permissions for UI and action visibility.
+- Permission sets for audience rollout.
+- Custom metadata for behavior switches.
+- Abstraction-based routing for integrations and service logic.
+
+This is the most important enabling practice for Salesforce teams that currently keep work isolated until business sign-off.
+
+## 7. Define a release model
+
+Choose one of two models:
+
+### Release from trunk
+
+Use this when release cadence is high and the team can fix forward quickly.
+
+### Branch for release
+
+Use this only when the business process requires a temporary stabilization line. Cut it late, keep development moving on `main`, and fix bugs on trunk first before cherry-picking if needed.
+
+This mirrors the source material closely.
+
+## 8. Reduce dependence on long-lived sandboxes
+
+Keep sandboxes for integration testing, UAT, and production-like validation, but stop using them as hidden development branches.
+
+Prefer:
+
+- Scratch orgs for daily isolated development.
+- CI-created validation environments when possible.
+- Repeatable setup over manually curated sandbox state.
+
+## 9. Pilot with one team and a narrow scope
+
+Do not start with every team and every artifact type at once. A good pilot usually means:
+
+- One product area.
+- One repository.
+- A defined pull-request SLA.
+- A small required test suite.
+- A clear branch-age target.
+
+Measure:
+
+- Average branch age.
+- Pull-request size.
+- Merge frequency to `main`.
+- Broken-build frequency.
+- Time from merge to validation.
+
+## 10. Tighten the operating rules after the pilot
+
+Once the team is stable:
+
+- Lower acceptable branch age.
+- Require smaller pull requests.
+- Expand automation coverage.
+- Remove old release-branch habits.
+- Retire manual deployment steps that encourage divergence.
+
+The goal is not "using Git differently". The goal is changing where and when integration happens.

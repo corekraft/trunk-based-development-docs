@@ -1,47 +1,43 @@
 ---
 sidebar_position: 1
+slug: /
 ---
 
-# Tutorial Intro
+# Trunk-Based Development for Salesforce
 
-Let's discover **Docusaurus in less than 5 minutes**.
+This documentation turns the guidance from [TrunkBasedDevelopment.com](https://trunkbaseddevelopment.com/) into a practical operating model for Salesforce teams.
 
-## Getting Started
+## What this site covers
 
-Get started by **creating a new site**.
+- The core ideas behind trunk-based development.
+- The key practices that matter most for delivery teams.
+- How to adapt those practices to Salesforce DX, scratch orgs, pull requests, validation, and release management.
+- A starting sequence for teams moving away from long-lived branches and sandbox-heavy workflows.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Core position
 
-### What you'll need
+The source material defines trunk-based development as a model where developers collaborate on a single shared branch and avoid long-lived development branches through disciplined techniques. It also ties trunk-based development closely to continuous integration and, by extension, continuous delivery.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+For Salesforce teams, that usually means:
 
-## Generate a new site
+- `main` stays the integration branch.
+- Feature branches, if used, are short-lived and owned by one developer or one pair.
+- Every change is validated automatically before and after it reaches `main`.
+- Incomplete work is hidden with toggles, permissions, or abstraction instead of being isolated for weeks in a branch.
 
-Generate a new Docusaurus site using the **classic template**.
+## Recommended reading path
 
-The classic template will automatically be added to your project after you run the command:
+1. Start with [Key Points](./foundations/key-points.mdx) for the high-level breakdown.
+2. Read [Core Principles](./foundations/core-principles.mdx) for the operating rules.
+3. Move to [Why Salesforce Needs TBD](./salesforce/why-salesforce-needs-tbd.mdx).
+4. Use [Starting Steps](./salesforce/starting-steps.mdx) as the initial rollout guide.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## Source material
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- [Introduction](https://trunkbaseddevelopment.com/)
+- [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)
+- [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
+- [Feature Flags](https://trunkbaseddevelopment.com/feature-flags/)
+- [Branch for Release](https://trunkbaseddevelopment.com/branch-for-release/)
+- [Release from Trunk](https://trunkbaseddevelopment.com/release-from-trunk/)
+- [Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)
