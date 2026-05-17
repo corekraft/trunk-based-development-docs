@@ -56,6 +56,8 @@ const config: Config = {
     ],
   ],
 
+  plugins: [require.resolve('docusaurus-lunr-search')],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/mission-control-social-card.svg',
@@ -114,8 +116,12 @@ const config: Config = {
             },
             {
               label: 'Feature Flags',
-              href: 'https://trunkbaseddevelopment.com/feature-flags/',
+              href: 'https://beyond.minimumcd.org/docs/migrate-to-cd/optimize/feature-flags/',
             },
+            {
+              label: 'Minimumcd.org',
+              href: 'https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/'
+            }
           ],
         },
         {

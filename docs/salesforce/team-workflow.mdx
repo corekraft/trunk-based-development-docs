@@ -40,7 +40,7 @@ The workflow only works if the team sizes work correctly:
 
 - A multi-week branch containing object model changes, flows, Apex refactors, profile edits, and deployment fixes waiting for one release event.
 
-That second example creates exactly the integration risk the source material warns about.
+That second example is exactly how teams recreate late integration and then act surprised by the fallout.
 
 ## Pull request expectations
 
@@ -55,4 +55,10 @@ Pull requests should be:
 
 Near a release, most developers should continue normal work on `main`. If a release branch exists, only a small subset of the team should focus on release candidate handling and cherry-picks. The rest of the team should not be dragged into a code freeze.
 
-That is a direct adaptation of the source guidance around release handling.
+## References
+
+- [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)
+- [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
+- [Feature Flags](https://trunkbaseddevelopment.com/feature-flags/)
+- [Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)
+- [Branch for Release](https://trunkbaseddevelopment.com/branch-for-release/)

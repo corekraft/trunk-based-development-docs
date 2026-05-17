@@ -15,8 +15,6 @@ Set the rule first:
 - No release train branches used for ongoing development.
 - If a short-lived branch is needed for review, it should merge within one to two days.
 
-This is directly aligned with the source material's emphasis on one shared trunk and short-lived branches.
-
 ## 2. Make source control the system of record
 
 Before process changes can hold, the team needs one trusted representation of the app:
@@ -50,7 +48,7 @@ At minimum, each pull request should run:
 - Targeted Apex tests or the agreed validation suite.
 - Deployment validation to a clean org where appropriate.
 
-The underlying principle comes from the trunk-based development CI guidance: developers and CI should run the same build logic, and every incoming change should be verified.
+Developers and CI should run the same build logic, and every incoming change should be verified.
 
 Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure.
 
@@ -86,8 +84,6 @@ Use this when release cadence is high and the team can fix forward quickly.
 ### Branch for release
 
 Use this only when the business process requires a temporary stabilization line. Cut it late, keep development moving on `main`, and fix bugs on trunk first before cherry-picking if needed.
-
-This mirrors the source material closely.
 
 ## 8. Reduce dependence on long-lived sandboxes
 
@@ -175,3 +171,14 @@ After the first few weeks, inspect where the new flow hurts:
 - Which flags or permissions are not being cleaned up
 
 That friction is where the next process improvement belongs.
+
+## References
+
+- [Introduction](https://trunkbaseddevelopment.com/)
+- [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)
+- [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
+- [Feature Flags](https://trunkbaseddevelopment.com/feature-flags/)
+- [Branch for Release](https://trunkbaseddevelopment.com/branch-for-release/)
+- [Release from Trunk](https://trunkbaseddevelopment.com/release-from-trunk/)
+- [MinimumCD: Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+- [MinimumCD: TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)

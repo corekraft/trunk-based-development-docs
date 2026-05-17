@@ -5,12 +5,9 @@ slug: /
 
 # Trunk-Based Development for Salesforce
 
-This documentation turns the guidance from [TrunkBasedDevelopment.com](https://trunkbaseddevelopment.com/) into a practical operating model for Salesforce teams.
+This documentation is for Salesforce teams that need to change how they build software, not just how they name branches.
 
-It also incorporates migration guidance from the MinimumCD Practice Guide:
-
-- [Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
-- [TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)
+Trunk-based development is a discipline. Engineers integrate continuously on one shared line of development, keep changes small, validate aggressively, and stop letting unfinished work rot in isolation.
 
 ## What this site covers
 
@@ -22,15 +19,15 @@ It also incorporates migration guidance from the MinimumCD Practice Guide:
 
 ## Core position
 
-The source material defines trunk-based development as a model where developers collaborate on a single shared branch and avoid long-lived development branches through disciplined techniques. It also ties trunk-based development closely to continuous integration and, by extension, continuous delivery.
-
 For Salesforce teams, that usually means:
 
 - `main` stays the integration branch.
 - Feature branches, if used, are short-lived and owned by one developer or one pair.
-- Daily integration is the non-negotiable threshold. If work is not reaching trunk at least once per day, the team is not yet operating in the model these sources describe.
+- Daily integration is the non-negotiable threshold. If work is not reaching trunk at least once per day, the team is not yet practicing trunk-based development.
 - Every change is validated automatically before and after it reaches `main`.
 - Incomplete work is hidden with toggles, permissions, or abstraction instead of being isolated for weeks in a branch.
+
+When a team says it is doing trunk-based development but still keeps long-lived branches, long-lived sandboxes, and late merge windows, the practice is not in place yet. Fix the operating model, not the terminology.
 
 ## Recommended reading path
 
@@ -40,7 +37,7 @@ For Salesforce teams, that usually means:
 4. Move to [Why Salesforce Needs TBD](./salesforce/why-salesforce-needs-tbd.mdx).
 5. Use [Starting Steps](./salesforce/starting-steps.mdx) as the initial rollout guide.
 
-## Source material
+## References
 
 - [Introduction](https://trunkbaseddevelopment.com/)
 - [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)

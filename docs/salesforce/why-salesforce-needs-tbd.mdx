@@ -33,9 +33,9 @@ Instead of saying "this feature stays on a branch until UAT is done", the team s
 - Runtime controls for incomplete work.
 - Late release branching only if the release process truly requires it.
 
-## Salesforce interpretation of the source material
+## What it means in Salesforce
 
-The source material is generic software-engineering guidance. Applying it to Salesforce leads to these practical interpretations:
+These ideas translate cleanly to Salesforce:
 
 - Scratch orgs are better aligned than long-lived sandboxes because they are disposable.
 - Salesforce DX source format makes `main` the real integration point.
@@ -53,3 +53,11 @@ Most failure cases are not tooling failures. They are policy failures:
 - Release management is allowed to interrupt daily integration.
 
 Those are operating-model problems first, not Git problems.
+
+## References
+
+- [Introduction](https://trunkbaseddevelopment.com/)
+- [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)
+- [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
+- [Feature Flags](https://trunkbaseddevelopment.com/feature-flags/)
+- [Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)

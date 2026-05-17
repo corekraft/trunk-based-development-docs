@@ -30,7 +30,8 @@ words:
   - orgs
   - Salesforce
   - sfdx
-  - trunkbaseddevelopment
+  - trunkbaseddevelopment # trunkbaseddevelopment.com
+  - minimumcd # minimumcd.org
 
 ignoreWords: []
 

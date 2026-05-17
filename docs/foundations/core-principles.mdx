@@ -16,7 +16,7 @@ For Salesforce, that means:
 
 ## Optimize for merge frequency, not branch comfort
 
-The source material repeatedly favors many small integrations over large delayed ones. That is the practical defense against merge hell.
+Many small integrations beat large delayed ones. That is the practical defense against merge hell.
 
 For Salesforce teams:
 
@@ -47,7 +47,7 @@ Salesforce-friendly controls include:
 
 ## Fix bugs on trunk first
 
-If a production release branch exists, the preferred practice from the source material is still to reproduce and fix the bug on trunk first, then cherry-pick to the release branch if needed. That avoids creating fixes that drift away from ongoing development.
+If a production release branch exists, reproduce and fix the bug on trunk first, then cherry-pick to the release branch if needed. That avoids creating fixes that drift away from ongoing development.
 
 ## Avoid orgs as branching substitutes
 
@@ -56,3 +56,12 @@ This is the main Salesforce-specific adaptation. Sandboxes and scratch orgs are 
 - Do not let a sandbox act as a weeks-long integration stream.
 - Do not let different sandboxes carry different truths for the same feature.
 - Use orgs to validate source-controlled changes, not to replace disciplined integration.
+
+## References
+
+- [Introduction](https://trunkbaseddevelopment.com/)
+- [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
+- [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-lived-feature-branches/)
+- [Feature Flags](https://trunkbaseddevelopment.com/feature-flags/)
+- [Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)
+- [Branch for Release](https://trunkbaseddevelopment.com/branch-for-release/)
