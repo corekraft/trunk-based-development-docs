@@ -39,6 +39,8 @@ If the team uses pull requests, define the contract clearly:
 
 This is the main behavior change most teams need.
 
+MinimumCD treats this as the first meaningful move: stop letting work age long enough to become normal. If the team cannot merge inside a day or two, the next problem to solve is work slicing, dependency management, or test readiness.
+
 ## 4. Put automated validation on every pull request
 
 At minimum, each pull request should run:
@@ -49,6 +51,8 @@ At minimum, each pull request should run:
 - Deployment validation to a clean org where appropriate.
 
 The underlying principle comes from the trunk-based development CI guidance: developers and CI should run the same build logic, and every incoming change should be verified.
+
+Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure.
 
 ## 5. Add a post-merge `main` pipeline
 
@@ -113,6 +117,8 @@ Measure:
 - Broken-build frequency.
 - Time from merge to validation.
 
+MinimumCD also recommends tracking merge-conflict frequency and incident rate after deployment so the team can tell whether smaller batches are actually reducing risk.
+
 ## 10. Tighten the operating rules after the pilot
 
 Once the team is stable:
@@ -124,3 +130,48 @@ Once the team is stable:
 - Retire manual deployment steps that encourage divergence.
 
 The goal is not "using Git differently". The goal is changing where and when integration happens.
+
+## 11. Choose the adoption path deliberately
+
+Use two path options from MinimumCD:
+
+### Path 1: Short-lived branches
+
+Start here when:
+
+- The team still needs pull-request approvals.
+- Automated validation exists but is not yet strong enough for direct trunk commits.
+- The group is moving off GitFlow or long-lived release habits in stages.
+
+### Path 2: Direct trunk commits
+
+Consider this only when:
+
+- Tests catch real defects quickly.
+- Developers already review continuously through pairing or a comparable practice.
+- The team has strong shared ownership of quality.
+
+For most Salesforce teams, Path 1 is the better starting point and Path 2 is an optimization to earn later.
+
+## 12. Add explicit team agreements
+
+MinimumCD puts team agreement early in the migration. For a Salesforce team, that agreement should state:
+
+- Maximum branch age
+- Expected pull-request turnaround time
+- Required validation checks
+- What counts as a temporary rollout control
+- How quickly a broken `main` build must be addressed
+
+Without those rules, the old branch model usually reappears under schedule pressure.
+
+## 13. Retrospect on friction, not just compliance
+
+After the first few weeks, inspect where the new flow hurts:
+
+- Which changes still take too long to slice
+- Which tests are too slow to support daily integration
+- Which metadata areas still create conflict hot spots
+- Which flags or permissions are not being cleaned up
+
+That friction is where the next process improvement belongs.

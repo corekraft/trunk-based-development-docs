@@ -1,0 +1,37 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M32 4L54.5167 18V46L32 60L9.48334 46V18L32 4Z"
+    fill="url(#outerHex)"
+  />
+  <path
+    d="M32 14L46.7224 23V43L32 52L17.2776 43V23L32 14Z"
+    fill="#07111E"
+    stroke="#79F8EA"
+    stroke-width="2.4"
+  />
+  <path
+    d="M24 28H40"
+    stroke="#79F8EA"
+    stroke-width="3.2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M24 36H36"
+    stroke="#355C74"
+    stroke-width="3.2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M22 43L26.5 27.5L32 37L37 22L42 43"
+    stroke="#FF8D63"
+    stroke-width="2.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <defs>
+    <linearGradient id="outerHex" x1="9.5" y1="8" x2="54.5" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5A86FF" />
+      <stop offset="1" stop-color="#2E4EBC" />
+    </linearGradient>
+  </defs>
+</svg>

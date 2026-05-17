@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'foundations/key-points',
         'foundations/core-principles',
+        'foundations/migration-guide-concepts',
       ],
     },
     {

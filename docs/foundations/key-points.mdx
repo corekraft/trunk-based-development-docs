@@ -24,6 +24,10 @@ If multiple developers are contributing, automated validation is required. Devel
 
 Source: [Continuous Integration](https://trunkbaseddevelopment.com/continuous-integration/)
 
+MinimumCD makes the same point more bluntly: if developers are not integrating to trunk daily, the team is not yet doing real CI and cannot claim continuous delivery readiness.
+
+Source: [MinimumCD Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+
 ## 4. Incomplete work belongs behind toggles, not in branches
 
 When work cannot be completed in one small slice, the guidance is to keep integrating incrementally and hide incomplete behavior with feature flags or similar runtime controls. For Salesforce, that often means custom metadata, custom permissions, permission sets, or configuration-driven routing.
@@ -56,3 +60,20 @@ Source: [Short-Lived Feature Branches](https://trunkbaseddevelopment.com/short-l
 ## 8. Salesforce implication
 
 The key inference for Salesforce is simple: stop treating long-lived sandboxes and long-lived branches as the place where integration happens. Integration should happen continuously in source control and CI, with orgs used for validation and testing, not as parallel lines of truth.
+
+## 9. There are two acceptable migration paths
+
+MinimumCD describes two ways to adopt TBD:
+
+- Short-lived pull-request branches that merge within a day.
+- Direct trunk commits backed by strong tests and fast feedback.
+
+For most Salesforce teams, the first path is the realistic starting point because compliance expectations, slower validation, and metadata complexity usually make an immediate jump to direct commits too abrupt.
+
+Source: [MinimumCD Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+
+## 10. Measure branch age and integration health
+
+The migration guide recommends baselining branch lifetime, merge-conflict frequency, delivery speed, and quality indicators before changing policy. That advice is useful for Salesforce teams because it turns the rollout into an observable operational change rather than a debate about preferences.
+
+Source: [MinimumCD TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)

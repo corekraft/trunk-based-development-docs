@@ -8,7 +8,7 @@ const config: Config = {
   title: 'Trunk-Based Development Practice',
   tagline:
     'Operational guidance for engineering teams keeping Salesforce delivery stable, observable, and continuously releasable.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {

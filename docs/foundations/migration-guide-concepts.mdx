@@ -1,0 +1,148 @@
+---
+sidebar_position: 4
+---
+
+# Migration Guide Concepts
+
+This page brings in the most useful adoption guidance from the MinimumCD Practice Guide and translates it into Salesforce terms.
+
+Primary sources:
+
+- [MinimumCD: Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+- [MinimumCD: TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)
+
+## Daily integration is the threshold
+
+MinimumCD frames trunk-based development as a foundation for continuous delivery, not an optimization to add later. The key threshold is simple: every developer integrates to trunk at least once per day.
+
+For Salesforce teams, that means:
+
+- `main` is where integration truth lives.
+- A branch older than a day is a warning sign, not a normal workflow state.
+- A sandbox that holds unmerged changes for days is acting like a hidden branch.
+
+## Two valid adoption paths
+
+MinimumCD describes two acceptable ways to reach daily integration.
+
+### Path 1: Short-lived pull-request branches
+
+Use this when the team still needs explicit review records or is moving away from long-lived branches in stages.
+
+- Branches should live for hours, not weeks.
+- Work is reviewed quickly and merged the same day when possible.
+- This is often the better first step for Salesforce teams with formal approval expectations.
+
+### Path 2: Direct trunk commits
+
+Use this only when the team already has strong automated tests, fast validation, and a high-trust review model such as pairing or mobbing.
+
+- Developers validate locally first.
+- Commits land directly on trunk.
+- CI confirms the shared branch immediately after the push.
+
+For most Salesforce teams, Path 1 is the safer starting point. Path 2 becomes realistic only after test quality and team habits improve.
+
+## Start by stopping work from aging
+
+One of the strongest MinimumCD ideas is that the first practical change is not perfect TBD. It is simply refusing to let work sit around long enough to become old.
+
+That exposes the real blockers:
+
+- Stories that are too large to merge safely.
+- Weak or missing tests.
+- Dependency chains between teams.
+- Requirements that are still too vague to implement in slices.
+
+That pain is useful. It tells the team where the operating model is still broken.
+
+## Measure before changing policy
+
+MinimumCD recommends establishing baseline metrics before the rollout. A Salesforce team should track at least:
+
+- Branch lifetime: average time from branch creation to merge.
+- Integration health: merge conflicts per week and time spent resolving them.
+- Delivery speed: time from commit to validated deployment.
+- Quality indicators: pipeline duration, test failure rate, and deployment incidents.
+
+Good starting targets:
+
+- Branch lifetime moves from weeks to days, then to hours.
+- Each developer integrates to trunk at least once per day.
+- The main validation pipeline is fast enough to support frequent merges.
+
+## Supporting practices that make TBD safe
+
+MinimumCD is explicit that trunk-based development does not work in isolation. The following practices matter directly in Salesforce:
+
+### Feature flags are a release strategy, not a test strategy
+
+Flags let teams merge incomplete work without exposing it to users, but every commit still needs to build, validate, and remain deployable.
+
+Salesforce-friendly flag equivalents include:
+
+- Custom permissions
+- Permission sets
+- Custom metadata-driven switches
+- Routing through Apex service abstractions
+
+Temporary release flags should have:
+
+- An owner
+- A removal date
+- A retirement plan once the feature is stable
+
+### Branch by abstraction and connect-last
+
+For larger changes, the answer is not a longer branch. It is to introduce seams:
+
+- Create or refine an Apex service interface.
+- Build the new implementation behind that interface.
+- Wire the new path in only when behavior is ready.
+
+This is especially useful for integrations, domain services, selectors, and refactors around flows or event handling.
+
+### Small commits and behavior-focused tests
+
+MinimumCD emphasizes small, atomic commits plus TDD/ATDD/BDD-style safety nets.
+
+In practice:
+
+- Split work into mergeable slices.
+- Prefer tests that protect observable behavior instead of internal implementation.
+- Use short Three Amigos conversations when a story is fuzzy or likely to branch in several directions.
+
+## Common migration failures
+
+The source material highlights a few predictable mistakes:
+
+### Treating TBD as branch renaming
+
+Changing `develop` to `main` is meaningless if branches still live for weeks and integration still happens late.
+
+### Merging daily without real integration
+
+Frequent merges do not help if:
+
+- The team hides breakage in unstable environments.
+- Validation is too weak to detect defects.
+- People merge incomplete work without a safe rollout control.
+
+### Keeping flags forever
+
+Flags that never get removed become permanent complexity. Temporary release controls should be cleaned up as part of finishing the feature.
+
+### Ignoring pipeline speed
+
+If validation takes too long, developers will batch changes and wait longer to merge. Slow CI directly undermines the behavior TBD depends on.
+
+## What this means for Salesforce teams
+
+The MinimumCD guidance maps cleanly onto Salesforce when translated into platform terms:
+
+- Use scratch orgs for isolated development, not as long-lived integration branches.
+- Validate the same source package shape locally and in CI.
+- Keep pull requests narrow enough that Apex, metadata, permissions, and automation can still be reviewed together.
+- Favor late release branching and trunk-first bug fixes if the business still requires release branches.
+
+The practical goal is not to look more modern in Git. The goal is to shorten the time between change, integration, validation, and release confidence.

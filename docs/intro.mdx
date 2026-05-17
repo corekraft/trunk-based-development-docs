@@ -7,10 +7,16 @@ slug: /
 
 This documentation turns the guidance from [TrunkBasedDevelopment.com](https://trunkbaseddevelopment.com/) into a practical operating model for Salesforce teams.
 
+It also incorporates migration guidance from the MinimumCD Practice Guide:
+
+- [Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+- [TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)
+
 ## What this site covers
 
 - The core ideas behind trunk-based development.
 - The key practices that matter most for delivery teams.
+- The migration choices, metrics, and team agreements that help teams move from long-lived branches to daily integration.
 - How to adapt those practices to Salesforce DX, scratch orgs, pull requests, validation, and release management.
 - A starting sequence for teams moving away from long-lived branches and sandbox-heavy workflows.
 
@@ -22,6 +28,7 @@ For Salesforce teams, that usually means:
 
 - `main` stays the integration branch.
 - Feature branches, if used, are short-lived and owned by one developer or one pair.
+- Daily integration is the non-negotiable threshold. If work is not reaching trunk at least once per day, the team is not yet operating in the model these sources describe.
 - Every change is validated automatically before and after it reaches `main`.
 - Incomplete work is hidden with toggles, permissions, or abstraction instead of being isolated for weeks in a branch.
 
@@ -29,8 +36,9 @@ For Salesforce teams, that usually means:
 
 1. Start with [Key Points](./foundations/key-points.mdx) for the high-level breakdown.
 2. Read [Core Principles](./foundations/core-principles.mdx) for the operating rules.
-3. Move to [Why Salesforce Needs TBD](./salesforce/why-salesforce-needs-tbd.mdx).
-4. Use [Starting Steps](./salesforce/starting-steps.mdx) as the initial rollout guide.
+3. Read [Migration Guide Concepts](./foundations/migration-guide-concepts.mdx) for the MinimumCD adoption path, metrics, and pitfalls.
+4. Move to [Why Salesforce Needs TBD](./salesforce/why-salesforce-needs-tbd.mdx).
+5. Use [Starting Steps](./salesforce/starting-steps.mdx) as the initial rollout guide.
 
 ## Source material
 
@@ -41,3 +49,5 @@ For Salesforce teams, that usually means:
 - [Branch for Release](https://trunkbaseddevelopment.com/branch-for-release/)
 - [Release from Trunk](https://trunkbaseddevelopment.com/release-from-trunk/)
 - [Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)
+- [MinimumCD Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
+- [MinimumCD TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)
