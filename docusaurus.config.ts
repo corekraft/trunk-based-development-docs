@@ -46,6 +46,9 @@ const config: Config = {
             'https://github.com/corekraft/trunk-based-development-docs/tree/main/',
         },
         blog: false,
+        gtag: {
+          trackingID: 'G-QJ4VN4K0JC',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
