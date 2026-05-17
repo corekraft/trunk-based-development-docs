@@ -1,0 +1,20 @@
+# Trunk-Based Development Practice
+
+> Operational guidance for engineering teams adopting trunk-based development, with a Salesforce focus.
+
+Site: https://corekraft.github.io/trunk-based-development-docs/
+
+## Preferred entry points
+
+- Overview: https://corekraft.github.io/trunk-based-development-docs/docs/
+- Core Principles: https://corekraft.github.io/trunk-based-development-docs/docs/foundations/core-principles
+- Why Salesforce Needs TBD: https://corekraft.github.io/trunk-based-development-docs/docs/salesforce/why-salesforce-needs-tbd
+- Starting Steps: https://corekraft.github.io/trunk-based-development-docs/docs/salesforce/starting-steps
+
+## Scope
+
+This site explains trunk-based development practices, migration guidance, continuous integration expectations, and Salesforce-specific implementation advice.
+
+## Source
+
+- GitHub: https://github.com/corekraft/trunk-based-development-docs

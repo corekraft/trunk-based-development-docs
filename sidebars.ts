@@ -18,11 +18,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Foundations',
-      items: [
-        'foundations/key-points',
-        'foundations/core-principles',
-        'foundations/migration-guide-concepts',
-      ],
+      items: ['foundations/core-principles'],
     },
     {
       type: 'category',

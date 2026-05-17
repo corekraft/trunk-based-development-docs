@@ -46,6 +46,11 @@ const config: Config = {
             'https://github.com/corekraft/trunk-based-development-docs/tree/main/',
         },
         blog: false,
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          filename: 'sitemap.xml',
+        },
         gtag: {
           trackingID: 'G-QJ4VN4K0JC',
         },
