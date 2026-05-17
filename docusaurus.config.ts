@@ -84,11 +84,6 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
-        {
-          href: 'https://trunkbaseddevelopment.com/',
-          label: 'Source Material',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -120,7 +115,7 @@ const config: Config = {
             },
             {
               label: 'Minimumcd.org',
-              href: 'https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/'
+              href: 'https://minimumcd.org/#trunk-based-development'
             }
           ],
         },
