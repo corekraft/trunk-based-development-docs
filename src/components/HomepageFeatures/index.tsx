@@ -1,6 +1,9 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import MountainSvg from '@site/static/img/undraw_docusaurus_mountain.svg';
+import ReactSvg from '@site/static/img/undraw_docusaurus_react.svg';
+import TreeSvg from '@site/static/img/undraw_docusaurus_tree.svg';
 
 import styles from './styles.module.css';
 
@@ -15,7 +18,7 @@ const featureList: FeatureItem[] = [
   {
     title: 'Controlled Integration Cadence',
     label: '01 / trunk integrity',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: MountainSvg,
     description: (
       <>
         Keep changes small, reviewable, and moving into <code>main</code> before
@@ -26,7 +29,7 @@ const featureList: FeatureItem[] = [
   {
     title: 'Operational Guardrails',
     label: '02 / validation mesh',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: TreeSvg,
     description: (
       <>
         Pair Salesforce delivery with CI checks, feature flags, and rollback
@@ -37,7 +40,7 @@ const featureList: FeatureItem[] = [
   {
     title: 'Incident-Ready Release Flow',
     label: '03 / response discipline',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: ReactSvg,
     description: (
       <>
         Roll forward with confidence because release readiness is measured

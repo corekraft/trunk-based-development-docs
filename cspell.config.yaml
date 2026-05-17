@@ -11,12 +11,18 @@ ignorePaths:
   - .docusaurus/**
   - package-lock.json
   - static/img/**
+  - blog/**
+  - docs/tutorial-basics/**
+  - docs/tutorial-extras/**
 
 files:
   - '**/*.{md,mdx,ts,tsx,js,jsx,json,yaml,yml,css}'
 
 words:
   - Corekraft
+  - ATDD
+  - Avenir
+  - BDD
   - Docusaurus
   - DX
   - GitHub
