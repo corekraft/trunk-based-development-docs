@@ -7,7 +7,7 @@ tags:
   - trunk-based development
   - workflow
   - pull requests
-  - ci
+  - continuous integration
   - branch policy
 ---
 
@@ -32,21 +32,21 @@ A practical Salesforce trunk-based workflow looks like this:
 The workflow only works if the team sizes work correctly:
 
 - Split large stories into mergeable increments.
-- Breakdown changes to identify how to safely deliver it without breaking the existing behaviors.
-- Make your changes durable, if it's not automated, it's not repeatable.
+- Break down changes so they can be delivered safely without breaking existing behavior.
+- Make the workflow durable. If it is not automated, it is not repeatable.
 - Deploy as early and as quickly as you can. Release when ready.
-- If a change will take longer, use feature flags, branch by abstraction, dark launch, connect test last instead of extending branch lifetime.
+- If a change will take longer, use feature flags, branch by abstraction, dark launches, or delayed connection patterns instead of extending branch lifetime.
 
 ## Salesforce examples
 
 ### Good candidate for one short-lived branch
 
 - Add an Apex service method.
-- Add a FlexiPage change that's permission gated
-- Add logs to an existing workflow
+- Add a FlexiPage change that is permission-gated.
+- Add logs to an existing workflow.
 - Add tests.
 - Add a permission-controlled UI entry point.
-- Visibility changes controlled by public groups
+- Visibility changes controlled by public groups.
 
 ### Bad candidate
 
@@ -65,7 +65,7 @@ Pull requests should be:
 
 ## Release behavior
 
-Near a release, most developers should continue normal work on `main`. Releases, much like performance reviews, shouldn't be a surprise. The elements for your release should already exist prior to the deed. The rest of the team should not be dragged into a code freeze.
+Near a release, most developers should continue normal work on `main`. Releases should not be surprises. The code and configuration needed for the release should already exist in trunk behind the right rollout controls, and the rest of the team should not be dragged into a code freeze.
 
 ## References
 

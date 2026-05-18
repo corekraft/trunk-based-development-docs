@@ -15,7 +15,7 @@ tags:
 
 # Core Principles
 
-These are concepts that are foundational to adopting trunk-based-development. Use them as a compass to guide your decision making.
+These concepts are foundational to adopting trunk-based development. Use them as a compass for team decisions, tooling choices, and delivery habits.
 
 ## 1. One shared line of development
 
@@ -25,31 +25,31 @@ The central idea is simple: the team collaborates on one branch, usually `main`,
 
 For Salesforce, that means:
 
-- Metadata and Code tracked on version control systems
-- Work-in-progress metadata and code are **hidden** from the users and does not **break** working versions.
+- Metadata and code are tracked in version control.
+- Work-in-progress metadata and code are hidden from users and do not break existing behavior.
 - Validation and tests run on every pull request.
 - The post-merge build on `main` is treated as authoritative.
 
 ## 2. Daily integration is the threshold
 
-Changes are merged *often* and branches only live for 1-day max. Keep changes flowing. [The number of changes are directly related to risk of breaking][1]. Simply put, the more changes you introduce to an environment in a single time, the higher the likelyhood of you breaking that environment. Smaller change = smaller risk. 
+Changes are merged often, and branches should usually live for no more than one day. Keep changes flowing. [The number of changes is directly related to the risk of breakage][1]. Put simply: the more change you introduce at once, the more likely you are to destabilize the environment. Smaller changes mean smaller risk.
 
 [1]: https://www.researchgate.net/publication/262204551_An_industrial_study_on_the_risk_of_software_changes
 
 For Salesforce teams, that means:
 
 - Ensuring ways to hide your WIP from your users.
-- Changes shouldn't break what was delivered.
+- Changes should not break what is already delivered.
 - `main` should always be deployable to production at any point in time.
-- No manual changes in a sandbox that's not tracked and didn't came from `main`
+- No manual sandbox changes that are untracked or did not originate from `main`.
 
-## 3. Short-lived branches. try ship, show, ask
+## 3. Short-lived branches: ship, show, ask
 
-Pull-request workflows are fine if branches are short-lived and owned by one developer or one pair. Attempt to do ship, show, ask when mature enough.
+Pull-request workflows are fine if branches are short-lived and owned by one developer or one pair. As the team matures, move toward "ship, show, ask": integrate continuously, keep changes visible, and avoid using review as a long-running holding pattern.
 
 When using feature-branches, they should be:
 
-- Branch off of `main`.
+- Branch from `main`.
 - Short-lived.
 - Owned by one developer or one pair.
 - Merged back to `main`.
@@ -69,7 +69,7 @@ For Salesforce teams:
 
 ## 5. Continuous integration is a practice
 
-Continuous Integration is not a tool. It's not Jenkins/AzureDevops/GithubActions/GitlabPipelines/Copado/Autorabit/Gearset/Bitbucket. Continuous Integration is a set of practice where changes are merged frequently without fear of breaking things.
+Continuous integration is not a tool. It is not Jenkins, Azure DevOps, GitHub Actions, GitLab Pipelines, Copado, AutoRABIT, Gearset, or Bitbucket. Continuous integration is a set of practices that let teams merge frequently without fear of breaking the system.
 
 Ask yourself:
 
@@ -79,7 +79,7 @@ Ask yourself:
 - Is the `main` branch always deployable?
 - Do we have small, deployable, individually validatable changes?
 
-If the answer to these questions are mostly no, you don't have CI. You have a build server.
+If the answer to these questions is mostly no, you do not have CI. You have a build server.
 
 ## 6. Incomplete work belongs behind toggles, not in branches
 
@@ -106,43 +106,43 @@ Temporary release flags should have:
 
 ## 7. Releases ARE NOT Deployments
 
-Do not mix what deployments and releases are.
+Do not confuse deployments with releases.
 
-Deployments should be the act of migrating a code or a configuration on the environment. It is technical in nature, and you should do it as frequent. Nobody cares if you added a new log on your class or your flow.
+Deployments move code or configuration into an environment. That act is technical in nature, and it should happen frequently. Nobody should need a release ceremony because you added a log statement or adjusted an internal flow path.
 
 Releases are making the behavior changes to your users.
 
-If your deployments rolls out changes to your users, you're doing it wrong.
+If every deployment automatically exposes unfinished or unapproved behavior to users, your release controls are too weak.
 
 ## 8. Deployments should be boring
 
-Teams should **not** be preparing for a deployment. Deployments should happen frequently, like a train, where it's consistent, on-time, and reliable. 
+Teams should not have to "prepare" for a deployment. Deployments should happen frequently, like a train: consistent, predictable, and reliable.
 
-Releases shouldn't affect the deployments where in you issue a code-freeze just because a release is coming.
+Releases should not force deployment freezes just because a business date is approaching.
 
 ## 9. Avoid orgs as branching substitutes
 
 Sandboxes and scratch orgs are useful environments, but they should not become hidden branch models:
 
 - Do not let a sandbox contain a manual change.
-- Do not let a feature be deployed to just one sandbox. One branch for ALL environments including production.
+- Do not let a feature exist in only one sandbox. One branch should serve every environment, including production.
 - Do not let different sandboxes carry different truths for the same feature.
-- When dealing with multiple workstreams that want their isolated environments, deploy the same code, activate a different feature.
+- When multiple workstreams need isolated validation, deploy the same code and activate different features.
 
-## 11. It takes a village
+## 10. It takes a village
 
-This practice is not just for engineers. Your product, pm, scrum master, delivery director, and client should be onboard too.
+This practice is not just for engineers. Product, project management, delivery leadership, QA, and clients all need to understand the operating model.
 
-Refuse to let work sit around too long and become old.
+Do not let work sit long enough to go stale.
 
 This practice requires participation:
 
-- Stories that are too large to deliver safely. Stories should be cut vertically, not horizontally.
-- Weak or missing tests. Acceptance tests are first-class-citizens of your definition of done.
+- Stories must be small enough to deliver safely. Cut them vertically, not horizontally.
+- Weak or missing tests must be treated as delivery risks. Acceptance tests are first-class citizens in the definition of done.
 - Engineers control deployments, Product controls releases.
-- Get feedback as soon as possible, deploying to production is also a form of feedback, it's confidence that your change didn't break anything.
+- Get feedback as early as possible. Production deployment is also feedback: it proves the change did not break the system in real conditions.
 
-## 12. Measure branch age and integration health
+## 11. Measure branch age and integration health
 
 Before changing policy, establish baseline metrics. A Salesforce team should track at least:
 
@@ -157,7 +157,7 @@ Good starting targets:
 - Each developer integrates to trunk at least once per day.
 - The main validation pipeline is fast enough to support frequent merges.
 
-## 13. Small commits and behavior-focused tests
+## 12. Small commits and behavior-focused tests
 
 Small, atomic commits make frequent integration possible. The matching safety net is behavior-focused testing.
 
@@ -167,7 +167,7 @@ In practice:
 - Prefer tests that protect observable behavior instead of internal implementation.
 - Use short Three Amigos (Engineering, Product, QA) conversations when a story is fuzzy or likely to branch in several directions.
 
-## 14. What this means for Salesforce teams
+## 13. What this means for Salesforce teams
 
 The practical goal is not to look more modern in Git. The goal is to shorten the time between change, integration, validation, and release confidence.
 
@@ -176,8 +176,8 @@ For Salesforce teams, that means:
 - Stop treating long-lived sandboxes and long-lived branches as the place where integration happens.
 - Keep pull requests narrow enough that Apex, metadata, permissions, and automation can still be reviewed together.
 - Validate the same source package shape locally and in CI.
-- Deployments should be boring. Reliable, on-time and durable.
-- Do not break what's already working. (Add tests!!)
+- Make deployments boring: reliable, on time, and repeatable.
+- Protect what already works with tests.
 
 ## References
 

@@ -8,7 +8,7 @@ tags:
   - rollout
   - source control
   - short-lived branches
-  - ci
+  - continuous integration
 ---
 
 # Starting Steps
@@ -57,7 +57,7 @@ At minimum, each pull request should run:
 
 Developers and CI should run the same build logic, and every incoming change should be verified.
 
-Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure. Fix that first, apply tooling whenever possible
+Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure. Fix that first and automate it wherever possible.
 
 ## 5. Add a post-merge `main` pipeline
 
@@ -83,7 +83,7 @@ This is the most important enabling practice for Salesforce teams that currently
 
 ## 7. Release from trunk
 
-No specific release branches. If it's built from `main` then it should also release from `main`. Keep the cadence high and fix forward quickly
+Do not create release branches for routine delivery. If it is built from `main`, it should also be released from `main`. Keep the cadence high and fix forward quickly.
 
 ## 8. Reduce dependence on long-lived sandboxes
 
@@ -127,14 +127,14 @@ The goal is not "using Git differently". The goal is changing where and when int
 
 ## 11. Ship, show, ask
 
-Use short lived branches to show and ask:
+Use short-lived branches to show and ask when:
 
 - Show and share changes to your peers.
 - Ask for review through approvals.
 - Automated validation exists but is not yet strong enough for direct trunk commits.
 - The group is moving off GitFlow or long-lived release habits in stages.
 
-Once mature, you can ship directly when: 
+Once mature, you can ship directly when:
 
 - Tests catch real defects quickly.
 - Developers already review continuously through pairing or a comparable practice.
@@ -142,15 +142,15 @@ Once mature, you can ship directly when:
 
 ## 12. Add explicit team agreements
 
-Agree about working culture. Trunk-based-development isn't only for developers. It requires participation from everyone in the value stream.
+Agree on the working culture. Trunk-based development is not only for developers. It requires participation from everyone in the value stream.
 
-- Small, vertically cut stories that are verifiable
-- Maximum branch age
-- Expected pull-request turnaround time
-- Required validation checks
-- What counts as a temporary rollout control
-- How quickly a broken `main` build must be addressed
-- Deployments are not releases
+- Small, vertically cut stories that are verifiable.
+- Maximum branch age.
+- Expected pull-request turnaround time.
+- Required validation checks.
+- What counts as a temporary rollout control.
+- How quickly a broken `main` build must be addressed.
+- Deployments are not releases.
 
 Without those working agreements, the old branch model usually reappears under schedule pressure.
 
@@ -158,10 +158,10 @@ Without those working agreements, the old branch model usually reappears under s
 
 After the first few weeks, inspect where the new flow hurts:
 
-- Which changes still take too long to slice
-- Which tests are too slow to support daily integration
-- Which metadata areas still create conflict hot spots
-- Which flags or permissions are not being cleaned up
+- Which changes still take too long to slice.
+- Which tests are too slow to support daily integration.
+- Which metadata areas still create conflict hot spots.
+- Which flags or permissions are not being cleaned up.
 
 That friction is where the next process improvement belongs.
 
