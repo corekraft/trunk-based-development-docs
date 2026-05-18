@@ -15,38 +15,44 @@ tags:
 
 # Core Principles
 
-This page consolidates the key operating rules, adoption concepts, and migration guidance that matter most when a Salesforce team is moving to trunk-based development.
+These are concepts that are foundational to adopting trunk-based-development. Use them as a compass to guide your decision making.
 
 ## 1. One shared line of development
 
-The central idea is simple: the team collaborates on one branch, usually `main`, and avoids long-lived development branches. The goal is to reduce merge pain, keep integration continuous, and maintain a releasable codebase.
+The central idea is simple: the team collaborates on one branch, usually `main`, and avoids long-lived development branches. The goal is to share your changes and ensure compatibility with the rest of your ecosystem.
 
 `main` is where the whole team meets. Every change merged there should compile, validate, and be a legitimate step toward production readiness.
 
 For Salesforce, that means:
 
-- Metadata in source format is the system of record.
+- Metadata and Code tracked on version control systems
+- Work-in-progress metadata and code are **hidden** from the users and does not **break** working versions.
 - Validation and tests run on every pull request.
 - The post-merge build on `main` is treated as authoritative.
 
 ## 2. Daily integration is the threshold
 
-MinimumCD frames trunk-based development as a foundation for continuous delivery, not an optimization to add later. The practical threshold is that every developer integrates to trunk at least once per day.
+Changes are merged *often* and branches only live for 1-day max. Keep changes flowing. [The number of changes are directly related to risk of breaking][1]. Simply put, the more changes you introduce to an environment in a single time, the higher the likelyhood of you breaking that environment. Smaller change = smaller risk. 
+
+[1]: https://www.researchgate.net/publication/262204551_An_industrial_study_on_the_risk_of_software_changes
 
 For Salesforce teams, that means:
 
-- `main` is where integration truth lives.
-- A branch older than a day is a warning sign, not a normal workflow state.
-- A sandbox that holds unmerged changes for days is acting like a hidden branch.
+- Ensuring ways to hide your WIP from your users.
+- Changes shouldn't break what was delivered.
+- `main` should always be deployable to production at any point in time.
+- No manual changes in a sandbox that's not tracked and didn't came from `main`
 
-## 3. Short-lived branches are allowed, long-lived branches are not
+## 3. Short-lived branches. try ship, show, ask
 
-Pull-request workflows are fine if branches are short-lived, usually no more than a couple of days, and owned by one developer or one pair. Once work lasts for weeks, the team is back in the failure mode trunk-based development is designed to eliminate.
+Pull-request workflows are fine if branches are short-lived and owned by one developer or one pair. Attempt to do ship, show, ask when mature enough.
 
-If a team uses feature branches, they should be:
+When using feature-branches, they should be:
 
+- Branch off of `main`.
 - Short-lived.
 - Owned by one developer or one pair.
+- Merged back to `main`.
 - Deleted immediately after merge.
 
 That rule matters even more in Salesforce, where metadata conflicts become painful quickly.
@@ -61,13 +67,19 @@ For Salesforce teams:
 - Break stories into slices that can merge independently.
 - Avoid bundling unrelated object, flow, permission, and code changes together.
 
-MinimumCD makes the same point more bluntly: if developers are not integrating to trunk daily, the team is not yet doing real CI and cannot claim continuous delivery readiness.
+## 5. Continuous integration is a practice
 
-## 5. Continuous integration is not optional
+Continuous Integration is not a tool. It's not Jenkins/AzureDevops/GithubActions/GitlabPipelines/Copado/Autorabit/Gearset/Bitbucket. Continuous Integration is a set of practice where changes are merged frequently without fear of breaking things.
 
-If multiple developers are contributing, automated validation is required. Developers should run the same build logic locally that CI runs centrally, and CI should validate both incoming changes and the shared trunk after merge.
+Ask yourself:
 
-The main validation pipeline also needs to stay fast enough to support frequent merges. If validation takes too long, developers batch changes, wait longer to merge, and the workflow drifts back toward long-lived branching.
+- Do we merge into `main` daily?
+- Are we protected by automated tests?
+- Can we merge safely multiple times per day?
+- Is the `main` branch always deployable?
+- Do we have small, deployable, individually validatable changes?
+
+If the answer to these questions are mostly no, you don't have CI. You have a build server.
 
 ## 6. Incomplete work belongs behind toggles, not in branches
 
@@ -75,11 +87,14 @@ When work cannot be completed in one small slice, the guidance is to keep integr
 
 Salesforce-friendly controls include:
 
+- Public Group Membership
 - Custom permissions
 - Permission sets
 - Custom metadata-driven switches
 - Hierarchy custom settings
 - Routing through Apex service abstractions
+- Connecting Components last
+- LWC Template switches
 
 Flags are a release strategy, not a test strategy. Every commit still needs to build, validate, and remain deployable.
 
@@ -89,68 +104,43 @@ Temporary release flags should have:
 - A removal date
 - A retirement plan once the feature is stable
 
-## 7. Larger changes need structure, not isolation
+## 7. Releases ARE NOT Deployments
 
-For changes that take longer, use branch by abstraction: introduce an abstraction, build the new implementation behind it, switch traffic, then remove the old path.
+Do not mix what deployments and releases are.
 
-In practice:
+Deployments should be the act of migrating a code or a configuration on the environment. It is technical in nature, and you should do it as frequent. Nobody cares if you added a new log on your class or your flow.
 
-- Create or refine an Apex service interface.
-- Build the new implementation behind that interface.
-- Wire the new path in only when behavior is ready.
+Releases are making the behavior changes to your users.
 
-This maps well to integrations, domain services, selectors, event handling, and deeper refactors around flows or service layers.
+If your deployments rolls out changes to your users, you're doing it wrong.
 
-## 8. Releases should not slow normal development
+## 8. Deployments should be boring
 
-Teams should not freeze trunk just because a release is approaching. If release branches are needed, they should be cut late and used narrowly. High-cadence teams can release directly from trunk and fix forward.
+Teams should **not** be preparing for a deployment. Deployments should happen frequently, like a train, where it's consistent, on-time, and reliable. 
 
-If a production release branch exists, reproduce and fix the bug on trunk first, then cherry-pick to the release branch if needed. That avoids creating fixes that drift away from ongoing development.
+Releases shouldn't affect the deployments where in you issue a code-freeze just because a release is coming.
 
 ## 9. Avoid orgs as branching substitutes
 
-This is the main Salesforce-specific adaptation. Sandboxes and scratch orgs are useful environments, but they should not become hidden branch models:
+Sandboxes and scratch orgs are useful environments, but they should not become hidden branch models:
 
-- Do not let a sandbox act as a weeks-long integration stream.
+- Do not let a sandbox contain a manual change.
+- Do not let a feature be deployed to just one sandbox. One branch for ALL environments including production.
 - Do not let different sandboxes carry different truths for the same feature.
-- Use orgs to validate source-controlled changes, not to replace disciplined integration.
+- When dealing with multiple workstreams that want their isolated environments, deploy the same code, activate a different feature.
 
-Scratch orgs are for isolated development and validation, not as long-lived integration branches.
+## 11. It takes a village
 
-## 10. Two valid adoption paths
+This practice is not just for engineers. Your product, pm, scrum master, delivery director, and client should be onboard too.
 
-MinimumCD describes two acceptable ways to adopt trunk-based development.
+Refuse to let work sit around too long and become old.
 
-### Path 1: Short-lived pull-request branches
+This practice requires participation:
 
-Use this when the team still needs explicit review records or is moving away from long-lived branches in stages.
-
-- Branches should live for hours, not weeks.
-- Work is reviewed quickly and merged the same day when possible.
-- This is often the better first step for Salesforce teams with formal approval expectations.
-
-### Path 2: Direct trunk commits
-
-Use this only when the team already has strong automated tests, fast validation, and a high-trust review model such as pairing or mobbing.
-
-- Developers validate locally first.
-- Commits land directly on trunk.
-- CI confirms the shared branch immediately after the push.
-
-For most Salesforce teams, Path 1 is the safer starting point. Path 2 becomes realistic only after test quality and team habits improve.
-
-## 11. Start by stopping work from aging
-
-One of the strongest MinimumCD ideas is that the first practical change is not perfect trunk-based development. It is refusing to let work sit around long enough to become old.
-
-That exposes the real blockers:
-
-- Stories that are too large to merge safely.
-- Weak or missing tests.
-- Dependency chains between teams.
-- Requirements that are still too vague to implement in slices.
-
-That pain is useful. It shows where the operating model is still broken.
+- Stories that are too large to deliver safely. Stories should be cut vertically, not horizontally.
+- Weak or missing tests. Acceptance tests are first-class-citizens of your definition of done.
+- Engineers control deployments, Product controls releases.
+- Get feedback as soon as possible, deploying to production is also a form of feedback, it's confidence that your change didn't break anything.
 
 ## 12. Measure branch age and integration health
 
@@ -175,37 +165,9 @@ In practice:
 
 - Split work into mergeable slices.
 - Prefer tests that protect observable behavior instead of internal implementation.
-- Use short Three Amigos conversations when a story is fuzzy or likely to branch in several directions.
+- Use short Three Amigos (Engineering, Product, QA) conversations when a story is fuzzy or likely to branch in several directions.
 
-## 14. Common failure modes
-
-The anti-patterns are predictable:
-
-### Treating TBD as branch renaming
-
-Changing `develop` to `main` is meaningless if branches still live for weeks and integration still happens late.
-
-### Merging daily without real integration
-
-Frequent merges do not help if:
-
-- The team hides breakage in unstable environments.
-- Validation is too weak to detect defects.
-- People merge incomplete work without a safe rollout control.
-
-### Keeping flags forever
-
-Flags that never get removed become permanent complexity. Temporary release controls should be cleaned up as part of finishing the feature.
-
-### Ignoring pipeline speed
-
-Slow CI directly undermines the behavior trunk-based development depends on.
-
-### Sharing long-lived feature branches
-
-Multiple developers sharing the same feature branch for general development is still long-lived branch behavior under a different name.
-
-## 15. What this means for Salesforce teams
+## 14. What this means for Salesforce teams
 
 The practical goal is not to look more modern in Git. The goal is to shorten the time between change, integration, validation, and release confidence.
 
@@ -214,7 +176,8 @@ For Salesforce teams, that means:
 - Stop treating long-lived sandboxes and long-lived branches as the place where integration happens.
 - Keep pull requests narrow enough that Apex, metadata, permissions, and automation can still be reviewed together.
 - Validate the same source package shape locally and in CI.
-- Favor late release branching and trunk-first bug fixes if the business still requires release branches.
+- Deployments should be boring. Reliable, on-time and durable.
+- Do not break what's already working. (Add tests!!)
 
 ## References
 
@@ -228,3 +191,4 @@ For Salesforce teams, that means:
 - [Release from Trunk](https://trunkbaseddevelopment.com/release-from-trunk/)
 - [MinimumCD: Trunk-Based Development](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/)
 - [MinimumCD: TBD Migration Guide](https://beyond.minimumcd.org/docs/migrate-to-cd/foundations/trunk-based-development/tbd-migration/)
+- [Research Paper for Change sets][1]

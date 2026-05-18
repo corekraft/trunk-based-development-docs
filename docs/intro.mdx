@@ -18,21 +18,21 @@ This documentation is for Salesforce teams that need to change how they build so
 
 Trunk-based development is a discipline. Engineers integrate continuously on one shared line of development, keep changes small, validate aggressively, and stop letting unfinished work rot in isolation.
 
-## What this site covers
+## What this covers
 
 - The core ideas behind trunk-based development.
 - The key practices that matter most for delivery teams.
 - The migration choices, metrics, and team agreements that help teams move from long-lived branches to daily integration.
-- How to adapt those practices to Salesforce DX, scratch orgs, pull requests, validation, and release management.
-- A starting sequence for teams moving away from long-lived branches and sandbox-heavy workflows.
+- How to adapt those practices to Salesforce, consistently and reliably.
+- A starting sequence for teams moving away from long-lived branches centric workflows.
 
 ## Core position
 
 For Salesforce teams, that usually means:
 
-- `main` stays the integration branch.
-- Feature branches, if used, are short-lived and owned by one developer or one pair.
-- Daily integration is the non-negotiable threshold. If work is not reaching trunk at least once per day, the team is not yet practicing trunk-based development.
+- `main`/`master` or `trunk` is the **only** long-lived branch.
+- Feature branches are short-lived and owned by one developer or one pair.
+- Daily integration / merging is the non-negotiable threshold. If work is not reaching trunk at least once per day, the team is not yet practicing trunk-based development.
 - Every change is validated automatically before and after it reaches `main`.
 - Incomplete work is hidden with toggles, permissions, or abstraction instead of being isolated for weeks in a branch.
 
