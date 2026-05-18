@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Trunk-Based Development Practice',
   tagline:
-    'Operational guidance for engineering teams keeping Salesforce delivery stable, observable, and continuously releasable.',
+    'More than your traditional branching strategy.',
   favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future

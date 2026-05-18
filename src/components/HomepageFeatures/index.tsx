@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import MountainSvg from '@site/static/img/undraw_docusaurus_mountain.svg';
@@ -16,19 +16,29 @@ type FeatureItem = {
 
 const featureList: FeatureItem[] = [
   {
+    title: 'Working Culture',
+    label: '01 / discipline',
+    Svg: ReactSvg,
+    description: (
+      <>
+        Decompose work in the smallest, vertical slice and roll forward with confidence because release readiness is measured
+        continuously, not guessed at the end of the sprint.
+      </>
+    ),
+  },
+  {
     title: 'Controlled Integration Cadence',
-    label: '01 / trunk integrity',
+    label: '02 / trunk integrity',
     Svg: MountainSvg,
     description: (
       <>
-        Keep changes small, reviewable, and moving into <code>main</code> before
-        branch drift turns into a deployment incident.
+        Keep changes small, reviewable, and moving into <code>main</code> ensuring changes are relevant and integrated early
       </>
     ),
   },
   {
     title: 'Operational Guardrails',
-    label: '02 / validation mesh',
+    label: '03 / automation over convention',
     Svg: TreeSvg,
     description: (
       <>
@@ -37,20 +47,9 @@ const featureList: FeatureItem[] = [
       </>
     ),
   },
-  {
-    title: 'Incident-Ready Release Flow',
-    label: '03 / response discipline',
-    Svg: ReactSvg,
-    description: (
-      <>
-        Roll forward with confidence because release readiness is measured
-        continuously, not guessed at the end of the sprint.
-      </>
-    ),
-  },
 ];
 
-function Feature({title, label, Svg, description}: FeatureItem) {
+function Feature({ title, label, Svg, description }: FeatureItem) {
   return (
     <article className={clsx('col col--4', styles.featureCol)}>
       <div className={styles.featureCard}>
@@ -70,13 +69,8 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <p className={styles.sectionEyebrow}>COMMAND SURFACES</p>
-          <Heading as="h2">Software delivery with mission-control discipline</Heading>
-          <p className={styles.sectionBody}>
-            The site now frames trunk-based development as an engineering
-            control system: observability, containment, and rapid corrective
-            action.
-          </p>
+          <p className={styles.sectionEyebrow}>MISSION CRITICAL</p>
+          <Heading as="h2">Salesforce delivery with mission-control discipline</Heading>
         </div>
         <div className="row">
           {featureList.map(feature => (
