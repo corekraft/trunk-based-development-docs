@@ -46,20 +46,18 @@ If the team uses pull requests, define the contract clearly:
 
 This is the main behavior change most teams need.
 
-MinimumCD treats this as the first meaningful move: stop letting work age long enough to become normal. If the team cannot merge inside a day or two, the next problem to solve is work slicing, dependency management, or test readiness.
-
 ## 4. Put automated validation on every pull request
 
 At minimum, each pull request should run:
 
-- Source format checks.
+- Source validation checks.
 - Linting and static analysis.
 - Targeted Apex tests or the agreed validation suite.
-- Deployment validation to a clean org where appropriate.
+- Deployment validation as early as possible.
 
 Developers and CI should run the same build logic, and every incoming change should be verified.
 
-Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure.
+Before tightening branch-age policies, audit whether the team can get useful feedback fast enough. If validation is slow, flaky, or too shallow to catch real defects, branch lifetime will grow again under pressure. Fix that first, apply tooling whenever possible
 
 ## 5. Add a post-merge `main` pipeline
 
@@ -78,21 +76,14 @@ To avoid long-lived branches for unfinished work, add release-safe toggles:
 - Custom permissions for UI and action visibility.
 - Permission sets for audience rollout.
 - Custom metadata for behavior switches.
+- Custom setting for behavior switches and controlled rollout.
 - Abstraction-based routing for integrations and service logic.
 
 This is the most important enabling practice for Salesforce teams that currently keep work isolated until business sign-off.
 
-## 7. Define a release model
+## 7. Release from trunk
 
-Choose one of two models:
-
-### Release from trunk
-
-Use this when release cadence is high and the team can fix forward quickly.
-
-### Branch for release
-
-Use this only when the business process requires a temporary stabilization line. Cut it late, keep development moving on `main`, and fix bugs on trunk first before cherry-picking if needed.
+No specific release branches. If it's built from `main` then it should also release from `main`. Keep the cadence high and fix forward quickly
 
 ## 8. Reduce dependence on long-lived sandboxes
 
@@ -122,8 +113,6 @@ Measure:
 - Broken-build frequency.
 - Time from merge to validation.
 
-MinimumCD also recommends tracking merge-conflict frequency and incident rate after deployment so the team can tell whether smaller batches are actually reducing risk.
-
 ## 10. Tighten the operating rules after the pilot
 
 Once the team is stable:
@@ -136,39 +125,34 @@ Once the team is stable:
 
 The goal is not "using Git differently". The goal is changing where and when integration happens.
 
-## 11. Choose the adoption path deliberately
+## 11. Ship, show, ask
 
-Use two path options from MinimumCD:
+Use short lived branches to show and ask:
 
-### Path 1: Short-lived branches
-
-Start here when:
-
-- The team still needs pull-request approvals.
+- Show and share changes to your peers.
+- Ask for review through approvals.
 - Automated validation exists but is not yet strong enough for direct trunk commits.
 - The group is moving off GitFlow or long-lived release habits in stages.
 
-### Path 2: Direct trunk commits
-
-Consider this only when:
+Once mature, you can ship directly when: 
 
 - Tests catch real defects quickly.
 - Developers already review continuously through pairing or a comparable practice.
 - The team has strong shared ownership of quality.
 
-For most Salesforce teams, Path 1 is the better starting point and Path 2 is an optimization to earn later.
-
 ## 12. Add explicit team agreements
 
-MinimumCD puts team agreement early in the migration. For a Salesforce team, that agreement should state:
+Agree about working culture. Trunk-based-development isn't only for developers. It requires participation from everyone in the value stream.
 
+- Small, vertically cut stories that are verifiable
 - Maximum branch age
 - Expected pull-request turnaround time
 - Required validation checks
 - What counts as a temporary rollout control
 - How quickly a broken `main` build must be addressed
+- Deployments are not releases
 
-Without those rules, the old branch model usually reappears under schedule pressure.
+Without those working agreements, the old branch model usually reappears under schedule pressure.
 
 ## 13. Retrospect on friction, not just compliance
 

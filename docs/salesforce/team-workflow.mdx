@@ -19,7 +19,7 @@ A practical Salesforce trunk-based workflow looks like this:
 
 1. Pull latest `main`.
 2. Create a short-lived branch only if review workflow requires it.
-3. Develop in a scratch org.
+3. Develop in an isolated personal sandbox or even better, a scratch org.
 4. Keep the change small enough to merge within one to two days.
 5. Validate locally using the same commands CI will run.
 6. Open a pull request.
@@ -32,18 +32,21 @@ A practical Salesforce trunk-based workflow looks like this:
 The workflow only works if the team sizes work correctly:
 
 - Split large stories into mergeable increments.
-- Separate refactors from behavior changes when practical.
-- Avoid combining multiple metadata domains in one pull request unless they are tightly coupled.
-- If a change will take longer, use feature flags or branch by abstraction instead of extending branch lifetime.
+- Breakdown changes to identify how to safely deliver it without breaking the existing behaviors.
+- Make your changes durable, if it's not automated, it's not repeatable.
+- Deploy as early and as quickly as you can. Release when ready.
+- If a change will take longer, use feature flags, branch by abstraction, dark launch, connect test last instead of extending branch lifetime.
 
 ## Salesforce examples
 
 ### Good candidate for one short-lived branch
 
 - Add an Apex service method.
+- Add a FlexiPage change that's permission gated
+- Add logs to an existing workflow
 - Add tests.
 - Add a permission-controlled UI entry point.
-- Keep the feature disabled by default.
+- Visibility changes controlled by public groups
 
 ### Bad candidate
 
@@ -62,7 +65,7 @@ Pull requests should be:
 
 ## Release behavior
 
-Near a release, most developers should continue normal work on `main`. If a release branch exists, only a small subset of the team should focus on release candidate handling and cherry-picks. The rest of the team should not be dragged into a code freeze.
+Near a release, most developers should continue normal work on `main`. Releases, much like performance reviews, shouldn't be a surprise. The elements for your release should already exist prior to the deed. The rest of the team should not be dragged into a code freeze.
 
 ## References
 
