@@ -33,6 +33,7 @@ words:
   - trunkbaseddevelopment # trunkbaseddevelopment.com
   - minimumcd # minimumcd.org
   - autorabit # tool for orchestration and deploying in salesforce
+  - flexipage # metadata for lightning record pages
 
 ignoreWords: []
 

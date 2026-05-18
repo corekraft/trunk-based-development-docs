@@ -19,49 +19,35 @@ Salesforce teams often inherit exactly the conditions trunk-based development is
 - Sandboxes acting like parallel code lines.
 - Late integration of metadata, Apex, flows, profiles, and permissions.
 - Painful pre-release merge windows.
+- Risky, often-breaking changes.
+- Features work in lower environments but not in production.
+- Deploying to production is an event and needs preparation or extra care.
 - Hotfixes that diverge from ongoing work.
 
 ## Why the model fits Salesforce
 
-Salesforce development has a high cost of late integration:
+Trunk-based-development is a software engineering discipline rooted in continuous integration, small batches of changes, and the habit of keeping the system releasable at all times. Salesforce does not sit outside of these principles just because it's a SaaS platform; it also demands the same engineering rigor.
 
-- Metadata merges are brittle.
-- Declarative and programmatic changes often land together.
-- Profiles, permissions, flows, and object metadata create broad blast radius.
-- Environment drift hides problems until late.
+- Salesforce changes often span code, configuration, permissions, and automation.
+- Small differences between environments can invalidate assumptions quickly.
+- Shared source control is more reliable than treating org state as the source of truth.
+- Reliable delivery depends on making integration and validation part of daily work.
+- Large batches of metadata and apex changes become expensive to merge, review and validate.
 
-A trunk-based model reduces that risk by forcing earlier integration and standardizing validation.
+A trunk-based model reduces that risk by pushing integration earlier, shrinking the size of each change, and making validation a standard part of delivery.
 
-## What changes in practice
+## What changes in practice and what it means in Salesforce
 
-Instead of saying "this feature stays on a branch until UAT is done", the team shifts to:
+Trunk-based development changes how Salesforce teams work every day. It replaces delayed integration, long-running branch work, and sandbox drift with a stricter operating model. Integrate early. Keep changes small. Keep the `main` branch deployable.
 
-- Small pull requests.
-- Frequent merges to `main`.
-- CI-backed validation to a clean org.
-- Runtime controls for incomplete work.
-- Late release branching only if the release process truly requires it.
+In practice, that means:
 
-## What it means in Salesforce
+- Short-loved branches **NOT** epic branches.
+- Frequent merges **NOT** release merge windows.
+- Continuous validation **NOT** Validate to env later.
+- Sandboxes are used to validate changes **NOT** to carry independent lines of work
 
-These ideas translate cleanly to Salesforce:
-
-- Scratch orgs are better aligned than long-lived sandboxes because they are disposable.
-- Salesforce DX source format makes `main` the real integration point.
-- Permission-driven rollout is often the simplest feature-flag equivalent.
-- Branch by abstraction is useful for Apex services, selectors, platform events, and external integrations.
-
-## When teams struggle
-
-Most failure cases are not tooling failures. They are policy failures:
-
-- Branches stay open too long.
-- Stories are too large to merge safely.
-- CI is slow or incomplete.
-- Teams rely on sandbox state that is not reproducible from source.
-- Release management is allowed to interrupt daily integration.
-
-Those are operating-model problems first, not Git problems.
+For salesforce teams, this matters because most changes are not isolated. Apex classes, LWCs, flows, validation rules, FlexiPages, permission sets, sharing model changes and other metadata often move together. Trunk-based development forces that integrating work together happen while changes are small enough to understand and safe enough to correct.
 
 ## References
 
