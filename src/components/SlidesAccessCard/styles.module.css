@@ -1,0 +1,73 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 280px);
+  gap: 1.5rem;
+  align-items: center;
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(121, 248, 234, 0.16);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at top right, rgba(121, 248, 234, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(9, 22, 36, 0.96), rgba(12, 29, 46, 0.98));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+}
+
+.copy > :last-child,
+.qrPanel > :last-child {
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  color: #79f8ea;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-bottom: 0.9rem;
+}
+
+.caption {
+  margin-bottom: 1.25rem;
+  color: #b7cad9;
+  max-width: 38rem;
+}
+
+.qrPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  background: rgba(6, 16, 27, 0.6);
+  text-align: center;
+}
+
+.qrImage {
+  width: min(100%, 240px);
+  height: auto;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+}
+
+.qrNote {
+  color: #a7bfd2;
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 996px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .qrPanel {
+    justify-self: start;
+    width: 100%;
+  }
+}
