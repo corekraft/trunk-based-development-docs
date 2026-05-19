@@ -1,6 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 /**
  * Creating a sidebar enables you to:
