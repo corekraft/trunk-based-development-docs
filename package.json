@@ -24,7 +24,7 @@
     "clsx": "2.1.1",
     "docusaurus-lunr-search": "^3.6.0",
     "prism-react-renderer": "2.4.1",
-    "react": "19.2.6",
+    "react": "19.2.7",
     "react-dom": "19.2.6"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@docusaurus/tsconfig": "3.10.1",
     "@docusaurus/types": "3.10.1",
     "@eslint/js": "10.0.1",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "cspell": "9.8.0",
     "eslint": "10.4.0",
     "eslint-plugin-mdx": "3.7.0",
